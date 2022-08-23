@@ -7,7 +7,7 @@ ANUVAAD_PASSWORD = 'Welcome@123'
 LOGIN_URL = 'https://developers.anuvaad.org/'
 
 # driver path
-CHROMEDRIVER_PATH = r'C:\Users\hanumesh\python\chromedriver.exe'
+CHROMEDRIVER_PATH = r'C:\Users\hanumesh\python\AnuvaadAutomation\chromedriver.exe'
 DOWNLOAD_DIR='C:\\Users\\hanumesh\\python\\DOWNLOAD'
 
 

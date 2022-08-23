@@ -3,7 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-OPEN_MENU_ELE = (By.ID,'open-menu')
+#OPEN_MENU_ELE = (By.ID,'open-menu')
 INSTANT_TRANSLATE_ELE = (By.ID,'instant-translate')
 LANGUAGE_ELE = (By.ID,'demo-simple-select-outlined')
 INPUT_TXT_ELE = (By.ID,'standard-multiline-static')
@@ -17,9 +17,9 @@ def performtranslatesentence(driver,src_lang,tgt_lang,inp_file):
     long_wait = WebDriverWait(driver,25)
 
     # click open tab
-    wait.until(EC.element_to_be_clickable(OPEN_MENU_ELE))
-    driver.find_element(*OPEN_MENU_ELE).click()
-    time.sleep(2)
+    #wait.until(EC.element_to_be_clickable(OPEN_MENU_ELE))
+    #driver.find_element(*OPEN_MENU_ELE).click()
+    #time.sleep(2)
 
     # click translate tab
     wait.until(EC.element_to_be_clickable(INSTANT_TRANSLATE_ELE))

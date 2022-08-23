@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 
 
-OPEN_MENU=(By.ID,"open-menu")
+#OPEN_MENU=(By.ID,"open-menu")
 OPEN_DIGIT=(By.ID,"document-digitization")
 START_DIGIT=(By.ID,"start-translate")
 INPUT_FILE=(By.XPATH,"//input[@type='file']")
@@ -26,10 +26,10 @@ def performDocumentDigitization(driver, input_file,language, version):
     wait = WebDriverWait(driver, 10)
 
     # click open menu
-    wait.until(EC.element_to_be_clickable(OPEN_MENU))
-    menu_ele = driver.find_element(*OPEN_MENU)
-    menu_ele.click()
-    time.sleep(2)
+    #wait.until(EC.element_to_be_clickable(OPEN_MENU))
+    #menu_ele = driver.find_element(*OPEN_MENU)
+    #menu_ele.click()
+    #time.sleep(2)
 
     # click open digitization
     wait.until(EC.element_to_be_clickable(OPEN_DIGIT))

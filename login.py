@@ -8,7 +8,7 @@ import time
 LOGIN_USERNAME = (By.ID,'email')
 LOGIN_PASSWORD = (By.ID,'passowrd')
 LOGIN_SUBMIT_BTN = (By.ID,'signin-btn')
-LOGIN_CHECK = (By.XPATH,'//h5[.="Document Translate"]')
+LOGIN_CHECK = (By.ID,'view-document')
 
 def perform_login(driver):
     # to get a link in browser
