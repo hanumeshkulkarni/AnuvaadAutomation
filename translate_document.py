@@ -4,24 +4,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-#OPEN_MENU_TRANS=(By.ID,"open-menu")
 OPEN_TRANS=(By.ID,"view-document")
 START_TRANS=(By.ID,"start-translate")
 INPUT_FILE_TRANS=(By.XPATH,"//input[@type='file']")
 SOURCE_LANG=(By.ID,"source-lang")
 TARGET_LANG=(By.ID,"target-lang")
 UPLOAD_FILE=(By.ID,"upload")
+PROCEED_BUTTN=(By.ID,"")
+VIEW_DOC=(By.ID)
 
 def performTranslateDocument(driver,input_file,source_inp,target_inp):
     # go to TRANS page
     # wait for clicking
     wait = WebDriverWait(driver, 10)
-
-    # click open menu
-    #wait.until(EC.element_to_be_clickable(OPEN_MENU_TRANS))
-    #menu_ele = driver.find_element(*OPEN_MENU_TRANS)
-    #menu_ele.click()
-    #time.sleep(2)
 
     # click open translate document
     wait.until(EC.element_to_be_clickable(OPEN_TRANS))
@@ -62,4 +57,18 @@ def performTranslateDocument(driver,input_file,source_inp,target_inp):
     upload_ele = driver.find_element(*UPLOAD_FILE)
     upload_ele.click()
     time.sleep(2)
+
+    # understood proceed button
+    wait.until(EC.element_to_be_clickable(PROCEED_BUTTN))
+    PROCEED_BUTTN.click()
+    time.sleep(2)
+
+    # to click on view document
+    wait.until(EC.element_to_be_clickable(VIEW_DOC))
+    driver.find_element(*VIEW_DOC).click()
+    time.sleep(2)
+
+
+
+
 

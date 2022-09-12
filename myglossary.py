@@ -1,65 +1,51 @@
-import time
-
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+import time
+from selenium.webdriver.support import expected_conditions as EC
 
-OPEN_MENU_TRANS=(By.ID,"open-menu")
-OPEN_TRANS=(By.ID,"view-document")
-START_TRANS=(By.ID,"start-translate")
-INPUT_FILE_TRANS=(By.XPATH,"//input[@type='file']")
-SOURCE_LANG=(By.ID,"source-lang")
-TARGET_LANG=(By.ID,"target-lang")
-UPLOAD_FILE=(By.ID,"upload")
+MY_GLOSSARY=(By.XPATH,'//*[@id="my-glossary"]')
+CREATE_GLOSSARY=(By.XPATH,'//button[.="Create Glossary"]')
+LANG_ELE=(By.ID,'demo-simple-select-outlined')
+TXT_ELE=(By.ID,'outlined-name')
+SUBMIT_ELE=(By.XPATH,'submit')
 
-def performTranslateDocument(driver,input_file,source_inp,target_inp):
-    # go to TRANS page
+def performglossary(driver,src_lang,tgt_lang,inp_file):
     # wait for clicking
     wait = WebDriverWait(driver, 10)
 
-    # click open menu
-    wait.until(EC.element_to_be_clickable(OPEN_MENU_TRANS))
-    menu_ele = driver.find_element(*OPEN_MENU_TRANS)
-    menu_ele.click()
+    # my glossary
+    wait.until(EC.element_to_be_clickable(MY_GLOSSARY))
+    glossary_ele = driver.find_element(*MY_GLOSSARY)
+    glossary_ele.click()
     time.sleep(2)
 
-    # click open translate document
-    wait.until(EC.element_to_be_clickable(OPEN_TRANS))
-    trans_ele = driver.find_element(*OPEN_TRANS)
-    trans_ele.click()
+    # create glossary
+    wait.until(EC.element_to_be_clickable(CREATE_GLOSSARY))
+    glossary_create = driver.find_element(*CREATE_GLOSSARY)
+    glossary_create.click()
     time.sleep(2)
 
-    # click on start translate
-    wait.until(EC.element_to_be_clickable(START_TRANS))
-    start_trans_ele = driver.find_element(*START_TRANS)
-    start_trans_ele.click()
+    # select source language
+    wait.until(EC.element_to_be_clickable(LANG_ELE))
+    driver.find_elements(*LANG_ELE)[0].click()
+    time.sleep(2)
+    driver.find_element(By.XPATH,'//li[@data-value="' + str(src_lang) + '"]').click()
     time.sleep(2)
 
-    # Click input file
-    wait.until(EC.presence_of_element_located(INPUT_FILE_TRANS))
-    input_ele = driver.find_element(*INPUT_FILE_TRANS)
-    input_file = r'{0}'.format(input_file) # r is to skip those char
-    input_ele.send_keys(input_file)
+    # select target language
+    wait.until(EC.element_to_be_clickable(LANG_ELE))
+    driver.find_elements(*LANG_ELE)[1].click()
+    time.sleep(2)
+    driver.find_element(By.XPATH,'//li[@data-value="' + str(tgt_lang) + '"]').click()
     time.sleep(2)
 
-    # click source language
-    wait.until(EC.element_to_be_clickable(SOURCE_LANG))
-    source_lang_ele = driver.find_elements(*SOURCE_LANG)[0]
-    source_lang_ele.click()
-    driver.find_element_by_xpath("//li[@data-value='"+source_inp+"']").click()
+    # enter input text
+    wait.until(EC.presence_of_element_located(TXT_ELE))
+    driver.find_element(*TXT_ELE).send_keys(inp_file)
     time.sleep(2)
 
-    # click target language
-    wait.until(EC.element_to_be_clickable(TARGET_LANG))
-    source_lang_ele = driver.find_elements(*TARGET_LANG)[0]
-    source_lang_ele.click()
-    dri=driver.find_element_by_xpath("//li[@data-value='" + target_inp+ "']")
-    driver.execute_script("arguments[0].click()", dri)  # it will run in backend(used JS)
-    time.sleep(2)
-
-    # click upload
-    wait.until(EC.element_to_be_clickable(UPLOAD_FILE))
-    upload_ele = driver.find_element(*UPLOAD_FILE)
-    upload_ele.click()
+    # submit
+    wait.until(EC.presence_of_element_located(SUBMIT_ELE))
+    driver.find_element(*SUBMIT_ELE).click()
     time.sleep(2)
 
