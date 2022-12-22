@@ -1,4 +1,4 @@
-@author:hanumesh.kamatagi @ Tarento
+@author:hanumesh.kamatagi@Tarento
 ## Overview
 The code in this repo could be utilized to automate procedures for  
 translating/digitizing the documents Anuvaad website.
